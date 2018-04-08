@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borda</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>新規イベント</h1>
+    <form action="/createevent" method="post">
+      <div>
+        <div>
+          <span>選択肢の数:</span>
+          <span id="plus-btn">+</span>
+          <span id="num">2</span>
+          <span id="minus-btn">-</span>
+        </div>
+      </div>
+      <div id="choice-list">
+        <div class="choice-item">
+          <label for="choice1">選択肢1:</label>
+          <input type="text" name="choice1" id="choice1">
+        </div>
+        <div class="choice-item">
+          <label for="choice2">選択肢2:</label>
+          <input type="text" name="choice2" id="choice2">
+        </div>
+      </div>
+      <button type="submit">作成</button>
+    </form>
+  </body>
+</html>
+
+<script>
+  $(function() {
+    var count = 2;
+
+    $('#plus-btn').click(function() {
+      count++;
+      $('#num').text(count);
+      $('#choice-list').append(
+        '<div class="choice-item">' +
+        '<label for="choice' + count + '">選択肢' + count +': </label>' +
+        '<input type="text" name="choice' + count + '" id="choice' + count + '">' +
+        '</div>'
+      );
+    });
+
+    $('#minus-btn').click(function() {
+      if (count <= 2) {
+        return;
+      }
+      $(".choice-item:last-child").remove();
+      count--;
+      $('#num').text(count);
+    });
+  });
+</script>

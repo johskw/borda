@@ -9,5 +9,6 @@ func GetRouter() *gin.Engine {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*.html")
 	r.GET("/", handler.ShowTop)
+	r.GET("/setting", handler.ShowSetting)
 	return r
 }

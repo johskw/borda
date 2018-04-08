@@ -25,3 +25,14 @@ func TestShowTop(t *testing.T) {
 		t.Error("Status code is", w.Code)
 	}
 }
+
+func TestShowSetting(t *testing.T) {
+	r := getGinRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/setting", nil)
+	r.GET("/setting", ShowSetting)
+	r.ServeHTTP(w, req)
+	if w.Code != 200 {
+		t.Error("Status code is", w.Code)
+	}
+}
