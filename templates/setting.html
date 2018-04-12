@@ -10,6 +10,10 @@
     <h1>新規イベント</h1>
     <form action="/createevent" method="post">
       <div>
+        <label for="title">タイトル:</label>
+        <input type="text" name="title" id="title">
+      </div>
+      <div>
         <div>
           <span>選択肢の数:</span>
           <span id="plus-btn">+</span>
@@ -20,11 +24,11 @@
       <div id="choice-list">
         <div class="choice-item">
           <label for="choice1">選択肢1:</label>
-          <input type="text" name="choice1" id="choice1">
+          <input type="text" name="choices[]" id="choice1">
         </div>
         <div class="choice-item">
           <label for="choice2">選択肢2:</label>
-          <input type="text" name="choice2" id="choice2">
+          <input type="text" name="choices[]" id="choice2">
         </div>
       </div>
       <button type="submit">作成</button>
@@ -42,7 +46,7 @@
       $('#choice-list').append(
         '<div class="choice-item">' +
         '<label for="choice' + count + '">選択肢' + count +': </label>' +
-        '<input type="text" name="choice' + count + '" id="choice' + count + '">' +
+        '<input type="text" name="choices[]" id="choice' + count + '">' +
         '</div>'
       );
     });

@@ -1,13 +1,15 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
 func ShowTop(c *gin.Context) {
-	c.HTML(200, "top.html", nil)
+	c.HTML(http.StatusOK, "top.html", nil)
 }
 
 func ShowSetting(c *gin.Context) {
-	c.HTML(200, "setting.html", nil)
+	c.HTML(http.StatusOK, "setting.html", nil)
 }

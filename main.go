@@ -1,10 +1,8 @@
 package main
 
-import (
-	"github.com/johskw/borda/router"
-)
+import "github.com/johskw/borda/config"
 
 func main() {
-	r := router.GetRouter()
+	r := config.GetRouter()
 	r.Run(":8080")
 }
