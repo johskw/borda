@@ -25,3 +25,13 @@ func ShowEvent(c *gin.Context) {
 		"event": event,
 	})
 }
+
+func ShowVote(c *gin.Context) {
+	event, err := service.GetEventFromStrID(c.Param("event_id"))
+	if err != nil {
+		log.Print(err)
+	}
+	c.HTML(http.StatusOK, "vote.html", gin.H{
+		"event": event,
+	})
+}

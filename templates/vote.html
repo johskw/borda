@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borda</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>投票</h1>
+    <h2>テーマ</h2>
+    {{ .event.Theme }}
+    <form action="/vote/{{.event.ID}}">
+      <h3>ニックネーム</h3>
+      <input type="text" name="name">
+      <h3>選択肢</h3>
+      <ul>
+        {{ range .event.Choices }}
+        <li>
+          <span class="choice">{{ .Name }}</span>
+          <span class="score"></span>
+          <input type="hidden" name="{{ .ID }}" value="">
+        </li>
+        {{ end }}
+      </ul>
+      <button type="submit">投票</button>
+      <span id="reset-btn">リセット</span>
+    </form>
+  </body>
+</html>
+
+<script>
+  $(function () {
+    var num;
+    var count;
+    init();
+
+    function init() {
+      num = $('.choice').length;
+      count = 0;
+    }
+
+    $('#reset-btn').click(function() {
+      init();
+      $('.score').text("");
+      $('input[type="hidden"]').val("");
+    });
+
+    $('.choice').click(function() {
+      if ($(this).siblings('input').val() !== "") {
+        return;
+      }
+      var score = num - count;
+      $(this).siblings('.score').text(count + 1 + "位（" + score + "点）")
+      $(this).siblings('input').val(score);
+      count++;
+    });
+  });
+</script>

@@ -18,6 +18,7 @@ func GetRouter() *gin.Engine {
 	r.GET("/setting", handler.ShowSetting)
 	r.POST("/createevent", handler.CreateEvent)
 	r.GET("/event/:id", handler.ShowEvent)
+	r.GET("/vote/:event_id", handler.ShowVote)
 	return r
 }
 
