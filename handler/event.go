@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/johskw/borda/model"
+	"github.com/johskw/borda/service"
 )
 
 func CreateEvent(c *gin.Context) {
@@ -14,19 +15,9 @@ func CreateEvent(c *gin.Context) {
 	if err != nil {
 		log.Print(err)
 	}
-	event, err = event.Create()
+	event, err = service.CreateEventAndChoices(event)
 	if err != nil {
-		log.Print(err)
-	}
-	for _, choiceName := range event.ChoiceNames {
-		choice := model.Choice{
-			Name:    choiceName,
-			EventID: event.ID,
-		}
-		err = choice.Create()
-		if err != nil {
-			log.Print(err)
-		}
+		log.Println(err)
 	}
 	c.Redirect(http.StatusMovedPermanently, "/process/"+event.StrID())
 }
