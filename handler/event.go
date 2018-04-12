@@ -19,5 +19,5 @@ func CreateEvent(c *gin.Context) {
 	if err != nil {
 		log.Println(err)
 	}
-	c.Redirect(http.StatusMovedPermanently, "/process/"+event.StrID())
+	c.Redirect(http.StatusMovedPermanently, "/event/"+event.StrID())
 }

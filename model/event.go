@@ -7,7 +7,7 @@ import (
 
 type Event struct {
 	ID          uint
-	Title       string   `form:"title"`
+	Theme       string   `form:"theme"`
 	ChoiceNames []string `form:"choices[]" gorm:"-"`
 	Choices     []Choice
 	CreatedAt   time.Time
@@ -20,5 +20,11 @@ func (event Event) StrID() string {
 
 func (event Event) Create() (Event, error) {
 	err := db.Create(&event).Error
+	return event, err
+}
+
+func GetEvent(id uint) (Event, error) {
+	var event Event
+	err := db.First(&event, id).Related(&event.Choices).Error
 	return event, err
 }

@@ -17,6 +17,7 @@ func GetRouter() *gin.Engine {
 	r.GET("/", handler.ShowTop)
 	r.GET("/setting", handler.ShowSetting)
 	r.POST("/createevent", handler.CreateEvent)
+	r.GET("/event/:id", handler.ShowEvent)
 	return r
 }
 
