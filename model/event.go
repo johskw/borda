@@ -10,6 +10,7 @@ type Event struct {
 	Theme       string   `form:"theme"`
 	ChoiceNames []string `form:"choices[]" gorm:"-"`
 	Choices     []Choice
+	Votes       []Vote
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 }

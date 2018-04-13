@@ -6,8 +6,9 @@ import (
 
 type Choice struct {
 	ID        uint
-	Name      string `form:"name"`
+	Name      string
 	EventID   uint
+	Scores    []Score
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

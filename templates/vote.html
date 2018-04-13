@@ -10,7 +10,7 @@
     <h1>投票</h1>
     <h2>テーマ</h2>
     {{ .event.Theme }}
-    <form action="/vote/{{.event.ID}}">
+    <form action="/vote/{{.event.ID}}" method="post">
       <h3>ニックネーム</h3>
       <input type="text" name="name">
       <h3>選択肢</h3>
@@ -19,7 +19,7 @@
         <li>
           <span class="choice">{{ .Name }}</span>
           <span class="score"></span>
-          <input type="hidden" name="{{ .ID }}" value="">
+          <input type="hidden" name="scores[]" data-choice-id="{{ .ID }}" value="">
         </li>
         {{ end }}
       </ul>
@@ -42,17 +42,19 @@
 
     $('#reset-btn').click(function() {
       init();
-      $('.score').text("");
-      $('input[type="hidden"]').val("");
+      $('.score').text('');
+      $('input[type="hidden"]').val('');
     });
 
     $('.choice').click(function() {
-      if ($(this).siblings('input').val() !== "") {
+      var $input = $(this).siblings('input');
+      if ($input.val() !== '') {
         return;
       }
       var score = num - count;
-      $(this).siblings('.score').text(count + 1 + "位（" + score + "点）")
-      $(this).siblings('input').val(score);
+      $(this).siblings('.score').text(count + 1 + '位（' + score + '点）')
+      var choiceId = $input.data('choice-id');
+      $input.val('{"score":' + score + ',"choice_id":' + choiceId + '}');
       count++;
     });
   });

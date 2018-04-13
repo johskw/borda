@@ -4,7 +4,8 @@ import "time"
 
 type Score struct {
 	ID        uint
-	Score     uint
+	Score     uint `json:"score"`
+	ChoiceID  uint `json:"choice_id"`
 	VoteID    uint
 	CreatedAt time.Time
 	UpdatedAt time.Time

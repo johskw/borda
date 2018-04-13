@@ -15,5 +15,5 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	db.AutoMigrate(&Event{}, &Choice{})
+	db.AutoMigrate(&Event{}, &Choice{}, &Vote{}, &Score{})
 }
