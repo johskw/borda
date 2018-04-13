@@ -7,7 +7,9 @@ import (
 
 type Event struct {
 	ID          uint
-	Theme       string   `form:"theme"`
+	Theme       string `form:"theme"`
+	Detail      string `form:"detail"`
+	Finished    bool
 	ChoiceNames []string `form:"choices[]" gorm:"-"`
 	Choices     []Choice
 	Votes       []Vote
@@ -28,4 +30,10 @@ func GetEvent(id uint) (Event, error) {
 	var event Event
 	err := db.First(&event, id).Related(&event.Choices).Error
 	return event, err
+}
+
+func (event Event) Finish() error {
+	event.Finished = true
+	err := db.Save(&event).Error
+	return err
 }

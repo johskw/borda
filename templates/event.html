@@ -9,12 +9,20 @@
     <h1>投票管理</h1>
     <h2>テーマ</h2>
     {{ .event.Theme }}
-    <h2>選択肢</h2>
-    <ul>
-      {{ range .event.Choices }}
-        <li>{{ .Name }}</li>
-      {{ end }}
-    </ul>
-    <a href="/vote/{{.event.ID}}">投票ページへ</a>
+
+    {{ if .event.Finished }}
+      <h2>投票結果</h2>
+    {{ else }}
+      <h2>選択肢</h2>
+      <ul>
+        {{ range .event.Choices }}
+          <li>{{ .Name }}</li>
+        {{ end }}
+      </ul>
+      <a href="/vote/{{.event.ID}}">投票ページへ</a>
+      <form method="post" style="margin: 0;" action="/finishevent/{{.event.ID}}">
+        <input type="submit" value="投票を終了する">
+      </form>
+    {{ end }}
   </body>
 </html>

@@ -12,9 +12,8 @@ import (
 
 func CreateVote(c *gin.Context) {
 	intID, _ := strconv.Atoi(c.Param("event_id"))
-	uintID := uint(intID)
 	vote := model.Vote{
-		EventID: uintID,
+		EventID: uint(intID),
 	}
 	err := c.Bind(&vote)
 	if err != nil {

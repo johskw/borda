@@ -16,10 +16,14 @@ func GetRouter() *gin.Engine {
 	r.LoadHTMLGlob("templates/*.html")
 	r.GET("/", handler.ShowTop)
 	r.GET("/setting", handler.ShowSetting)
+
 	r.POST("/createevent", handler.CreateEvent)
 	r.GET("/event/:id", handler.ShowEvent)
+	r.POST("/finishevent/:id", handler.FinishEvent)
+
 	r.GET("/vote/:event_id", handler.ShowVote)
 	r.POST("/vote/:event_id", handler.CreateVote)
+
 	return r
 }
 

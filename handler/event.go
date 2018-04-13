@@ -17,7 +17,15 @@ func CreateEvent(c *gin.Context) {
 	}
 	event, err = service.CreateEventAndChoices(event)
 	if err != nil {
-		log.Println(err)
+		log.Print(err)
 	}
 	c.Redirect(http.StatusMovedPermanently, "/event/"+event.StrID())
+}
+
+func FinishEvent(c *gin.Context) {
+	err := service.FinishEvent(c.Param("id"))
+	if err != nil {
+		log.Print(err)
+	}
+	c.Redirect(http.StatusMovedPermanently, "/event/"+c.Param("id"))
 }

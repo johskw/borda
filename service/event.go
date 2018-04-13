@@ -7,6 +7,7 @@ import (
 )
 
 func CreateEventAndChoices(event model.Event) (model.Event, error) {
+	event.Finished = false
 	event, err := event.Create()
 	if err != nil {
 		return event, err
@@ -28,4 +29,13 @@ func GetEventFromStrID(strID string) (model.Event, error) {
 	intID, _ := strconv.Atoi(strID)
 	event, err := model.GetEvent(uint(intID))
 	return event, err
+}
+
+func FinishEvent(strID string) error {
+	event, err := GetEventFromStrID(strID)
+	if err != nil {
+		return err
+	}
+	err = event.Finish()
+	return err
 }
