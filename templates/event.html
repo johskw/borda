@@ -12,6 +12,11 @@
 
     {{ if .event.Finished }}
       <h2>投票結果</h2>
+      <ul>
+        {{ range .result }}
+          <li>{{ .ChoiceName }}（{{ .TotalScore }}点）</li>
+        {{ end }}
+      </ul>
     {{ else }}
       <h2>選択肢</h2>
       <ul>

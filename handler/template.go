@@ -21,8 +21,19 @@ func ShowEvent(c *gin.Context) {
 	if err != nil {
 		log.Print(err)
 	}
+	if !event.Finished {
+		c.HTML(http.StatusOK, "event.html", gin.H{
+			"event": event,
+		})
+		return
+	}
+	result, err := service.GetResult(event)
+	if err != nil {
+		log.Print(err)
+	}
 	c.HTML(http.StatusOK, "event.html", gin.H{
-		"event": event,
+		"event":  event,
+		"result": result,
 	})
 }
 
