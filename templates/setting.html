@@ -8,33 +8,38 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <a href="/">TOPへ</a>
-    <h1>新規イベント</h1>
-    <form action="/createevent" method="post">
-      <div>
-        <label for="theme">テーマ:</label>
-        <input type="text" name="theme" id="theme">
-      </div>
-      <div>
-        <div>
-          <span>選択肢の数:</span>
-          <span id="plus-btn">+</span>
-          <span id="num">2</span>
-          <span id="minus-btn">-</span>
+    <div class="l-main">
+      <a href="/">TOPへ</a>
+      <h1>投票イベント設定</h1>
+      <form action="/createevent" method="post" class="event-form">
+        <div class="form-item">
+          <input type="text" name="theme" placeholder="テーマ">
         </div>
-      </div>
-      <div id="choice-list">
-        <div class="choice-item">
-          <label for="choice1">選択肢1:</label>
-          <input type="text" name="choices[]" id="choice1">
+        <div class="form-item">
+          <textarea name="detail" rows="3" placeholder="説明（任意）"></textarea>
         </div>
-        <div class="choice-item">
-          <label for="choice2">選択肢2:</label>
-          <input type="text" name="choices[]" id="choice2">
+        <div class="form-item">
+          <div class="num-selector">
+            <p>選択肢の数</p>
+            <span class="num-btn plus-btn" id="plus-btn">＋</span>
+            <span class="num" id="num">2</span>
+            <span class="num-btn minus-btn is-btn-disabled" id="minus-btn">－</span>
+          </div>
         </div>
-      </div>
-      <button type="submit">作成</button>
-    </form>
+        <div id="choice-list">
+          <div class="form-item choice-item">
+            <input type="text" name="choices[]" placeholder="選択肢1">
+          </div>
+          <div class="form-item choice-item">
+            <input type="text" name="choices[]" placeholder="選択肢2">
+          </div>
+        </div>
+        <button type="submit" class="btn">作成</button>
+      </form>
+    </div>
+    <footer>
+       <span>&copy; 2018 Joichiro Hashikawa All Rights Reserved.</span>
+    </footer>
   </body>
 </html>
 
@@ -43,12 +48,14 @@
     var count = 2;
 
     $('#plus-btn').click(function() {
+      if (count == 2) {
+        $('#minus-btn').removeClass('is-btn-disabled');
+      }
       count++;
       $('#num').text(count);
       $('#choice-list').append(
-        '<div class="choice-item">' +
-        '<label for="choice' + count + '">選択肢' + count +': </label>' +
-        '<input type="text" name="choices[]" id="choice' + count + '">' +
+        '<div class="form-item choice-item">' +
+        '<input type="text" name="choices[]" placeholder="選択肢' + count + '">' +
         '</div>'
       );
     });
@@ -60,6 +67,9 @@
       $(".choice-item:last-child").remove();
       count--;
       $('#num').text(count);
+     if (count <= 2) {
+       $('#minus-btn').addClass('is-btn-disabled');
+     }
     });
   });
 </script>

@@ -1,7 +1,5 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-v2.0 | 20110126
-License: none (public domain)
-*/
+/* reset */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,7 +20,6 @@ font-size: 100%;
 font: inherit;
 vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 display: block;
@@ -45,3 +42,150 @@ table {
 border-collapse: collapse;
 border-spacing: 0;
 }
+button:focus {
+  outline: none;
+}
+
+/* base */
+
+html, body {
+  font-size: 16px;
+  color: #444;
+}
+
+h1 {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 1em 0;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  font-size: .9em;
+  line-height: 2em;
+  border: none;
+  border-bottom: 2px solid #ccc;
+}
+
+input[type="text"]:focus, textarea:focus {
+  outline: none;
+  border-bottom-color: #20b2aa;
+}
+
+/* layout */
+
+.l-main {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+  padding-bottom: .8em;
+}
+
+footer span {
+  font-size: .85em;
+}
+
+/* module */
+
+.event-form {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+  border-radius: 2px;
+  padding: 2.5em 0;
+  margin-bottom: 3em;
+}
+
+.form-item {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1.2em;
+}
+
+@media (max-width: 768px) {
+  .form-item {
+    width: 85%;
+  }
+}
+
+.form-item:last-child {
+  margin-bottom: 2.5em;
+}
+
+.num-selector p {
+  margin-bottom: .5em;
+}
+
+.num-btn {
+  display: inline-block;
+  height: 1.4em;
+  width: 1.4em;
+  line-height: 1.4em;
+  font-size: 1.3em;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.num-btn:active {
+  position: relative;
+  top: 1px;
+  box-shadow: none;
+}
+
+.plus-btn {
+  background-color: #ff6347;
+}
+
+.minus-btn {
+  background-color: #2ca9e1;
+}
+
+.num-selector .num {
+  display: inline-block;
+  height: 1.3em;
+  width: 1.3em;
+  line-height: 1.3em;
+  font-size: 1.6em;
+  margin: 0 1em;
+  position: relative;
+  top: .07em;
+}
+
+.btn {
+  display: inline-block;
+  padding: .7em 1.4em;
+  min-width: 8em;
+  background-color: #20b2aa;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn:active {
+  position: relative;
+  top: 1px;
+  box-shadow: none;
+}
+
+/* state */
+
+.is-btn-disabled {
+  background-color: #bbb;
+}
+.is-btn-disabled:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  top: 0;
+}
+
+/* theme */
