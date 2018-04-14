@@ -45,6 +45,9 @@ border-spacing: 0;
 button:focus {
   outline: none;
 }
+a {
+  text-decoration: none;
+}
 
 /* base */
 
@@ -77,6 +80,11 @@ input[type="text"]:focus, textarea:focus {
 .l-main {
   max-width: 600px;
   margin: 0 auto;
+  margin-bottom: 3em;
+}
+
+.l-align-center {
+  text-align: center;
 }
 
 footer {
@@ -90,6 +98,10 @@ footer span {
 
 /* module */
 
+.top-title {
+  font-size: 4em;
+}
+
 .event-form {
   width: 90%;
   margin: 0 auto;
@@ -97,7 +109,6 @@ footer span {
   box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
   border-radius: 2px;
   padding: 2.5em 0;
-  margin-bottom: 3em;
 }
 
 .form-item {
@@ -143,11 +154,11 @@ footer span {
 }
 
 .plus-btn {
-  background-color: #ff6347;
+  background-color: #ec6d51;
 }
 
 .minus-btn {
-  background-color: #2ca9e1;
+  background-color: #38a1db;
 }
 
 .num-selector .num {
