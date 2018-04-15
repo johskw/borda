@@ -6,11 +6,14 @@
     <title>Borda</title>
     <link rel='stylesheet' href="../src/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
   </head>
   <body>
+    <header>
+      <a href="/event/{{.event.ID}}" class="back-btn"><i class="fas fa-chevron-left"></i></a>
+      <a href="/" class="icon">ボルダで決めったー</a>
+    </header>
     <div class="l-main">
-      <a href="/">TOPへ</a>
-      <a href="/event/{{.event.ID}}">戻る</a>
       <h1>投票</h1>
       <div class="event-info">
         <h2>テーマ</h2>
