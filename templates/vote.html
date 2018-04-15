@@ -12,8 +12,20 @@
       <a href="/">TOPへ</a>
       <a href="/event/{{.event.ID}}">戻る</a>
       <h1>投票</h1>
-      <h2>テーマ</h2>
-      {{ .event.Theme }}
+      <div class="event-info">
+        <h2>テーマ</h2>
+        <div class="l-align-center">
+          <p class="event-theme">{{ .event.Theme }}</p>
+        </div>
+      </div>
+      {{ if .event.Detail }}
+        <div class="event-info">
+          <h2>説明</h2>
+          <div class="l-align-center">
+            <p>{{ .event.Detail }}</p>
+          </div>
+        </div>
+      {{ end }}
       <form action="/vote/{{.event.ID}}" method="post" class="event-form">
         <div class="form-item">
           <p class="form-explain">

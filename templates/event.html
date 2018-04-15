@@ -9,12 +9,20 @@
   <body>
     <a href="/">TOPへ</a>
     <div class="l-main">
-      <h1>投票管理</h1>
-      <h2>テーマ</h2>
-      {{ .event.Theme }}
+      <h1>投票イベント</h1>
+      <div class="event-info">
+        <h2>テーマ</h2>
+        <div class="l-align-center">
+          <p class="event-theme">{{ .event.Theme }}</p>
+        </div>
+      </div>
       {{ if .event.Detail }}
-        <h2>説明</h2>
-        {{ .event.Detail }}
+        <div class="event-info">
+          <h2>説明</h2>
+          <div class="l-align-center">
+            <p>{{ .event.Detail }}</p>
+          </div>
+        </div>
       {{ end }}
       {{ if .event.Finished }}
         <h2>投票結果</h2>
@@ -24,13 +32,19 @@
           {{ end }}
         </ul>
       {{ else }}
-        <h2>選択肢</h2>
-        <ul>
-          {{ range .event.Choices }}
-            <li>{{ .Name }}</li>
-          {{ end }}
-        </ul>
-        <a href="/vote/{{.event.ID}}">投票ページへ</a>
+        <div class="event-info">
+          <h2>選択肢</h2>
+          <div class="l-align-center">
+            <ul>
+              {{ range .event.Choices }}
+                <li>{{ .Name }}</li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        <div class="l-align-center">
+          <a href="/vote/{{.event.ID}}" class="btn">投票フォームへ</a>
+        </div>
         <form method="post" style="margin: 0;" action="/finishevent/{{.event.ID}}">
           <button type="submit">投票を終了する</button>
         </form>
