@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borda</title>
+    <title>ボルダで決めったー</title>
     <link rel='stylesheet' href="../src/style.css">
   </head>
   <body>
@@ -12,6 +12,7 @@
     </header>
     <div class="l-main">
       <h1>投票イベント</h1>
+      <a href="" class="btn btn-inverse event-edit-btn">編集</a>
       <div class="event-info">
         <h2>テーマ</h2>
         <div class="l-align-center">
@@ -47,8 +48,14 @@
         <div class="l-align-center">
           <a href="/vote/{{.event.ID}}" class="btn">投票フォームへ</a>
         </div>
+        <div class="l-align-center">
+          <span class="btn btn-inverse vote-list-btn">投票者一覧</span>
+        </div>
         <form method="post" style="margin: 0;" action="/finishevent/{{.event.ID}}">
-          <button type="submit">投票を終了する</button>
+        <div class="l-align-center">
+          <button type="submit" class="btn event-finish-btn">投票を終了する</button>
+          <p class="finish-btn-explain">※投票を終了して結果を表示します。イベント作成時のパスワードが必要になります。</p>
+        </div>
         </form>
       {{ end }}
     </div>

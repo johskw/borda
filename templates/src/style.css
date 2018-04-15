@@ -127,7 +127,7 @@ footer span {
 /* module */
 
 .top-title {
-  font-size: 4em;
+  font-size: 3em;
 }
 
 header .icon {
@@ -219,7 +219,7 @@ header .back-btn {
 .btn {
   display: inline-block;
   padding: .7em 1.4em;
-  min-width: 8em;
+  min-width: 11em;
   background-color: #20b2aa;
   color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
@@ -234,7 +234,8 @@ header .back-btn {
 }
 
 .reset-btn {
-  background-color: #bbb;
+  background-color: #ec6d51;
+  color: #fff;
   font-size: .9em;
   padding: .6em 1.2em;
   min-width: 0;
@@ -367,6 +368,46 @@ header .back-btn {
   position: absolute;
   top: .1em;
   left: -1em;
+}
+
+.btn.btn-inverse {
+  background-color: #fff;
+  color: #20b2aa;
+  font-size: .8em;
+}
+
+.event-edit-btn {
+  position: absolute;
+  padding: .6em 1em;
+  right: 2em;
+  top: 5.9em;
+  min-width: 0;
+}
+
+.vote-list-btn {
+  min-width: 0;
+  margin-top: 1.5em;
+}
+
+.event-edit-btn:active {
+  position: absolute;
+  top: 6.05em;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+}
+
+.event-finish-btn {
+  font-size: .9em;
+  min-width: 0;
+  margin: 3em 0 .7em;
+  background-color: #fff;
+  color: #ec6d51;
+}
+
+.finish-btn-explain {
+  font-size: .8em;
+  width: 21em;
+  margin: 0 auto;
+  color: #777;
 }
 
 /* state */
