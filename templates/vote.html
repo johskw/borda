@@ -8,32 +8,46 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <a href="/">TOPへ</a>
-    <a href="/event/{{.event.ID}}">戻る</a>
-    <h1>投票</h1>
-    <h2>テーマ</h2>
-    {{ .event.Theme }}
-    <form action="/vote/{{.event.ID}}" method="post">
-      <h3>ニックネーム</h3>
-      <input type="text" name="name">
-      <h3>選択肢</h3>
-      <ul>
-        {{ range .event.Choices }}
-        <li>
-          <span class="choice">{{ .Name }}</span>
-          <span class="score"></span>
-          <input type="hidden" name="scores[]" data-choice-id="{{ .ID }}" value="">
-        </li>
-        {{ end }}
-      </ul>
-      <button type="submit">投票</button>
-      <span id="reset-btn">リセット</span>
-    </form>
+    <div class="l-main">
+      <a href="/">TOPへ</a>
+      <a href="/event/{{.event.ID}}">戻る</a>
+      <h1>投票</h1>
+      <h2>テーマ</h2>
+      {{ .event.Theme }}
+      <form action="/vote/{{.event.ID}}" method="post" class="event-form">
+        <div class="form-item">
+          <p class="form-explain">
+            良いと思う順にクリックしてください。間違えた場合は、下のリセットボタンを押してやり直すことができます。
+          </p>
+        </div>
+        <div class="form-item">
+          <ul>
+            {{ range .event.Choices }}
+            <li>
+              <div class="choice">
+                {{ .Name }}
+                <span class="score"></span>
+              </div>
+              <input type="hidden" name="scores[]" data-choice-id="{{ .ID }}" value="">
+            </li>
+            {{ end }}
+            <span class="btn reset-btn" id="reset-btn">リセット</span>
+          </ul>
+        </div>
+        <div class="form-item">
+          <input type="text" name="name" placeholder="ニックネーム" class="nickname-form">
+        </div>
+        <button type="submit" class="btn">投票</button>
+      </form>
+    </div>
+    <footer>
+      <span>&copy; 2018 Joichiro Hashikawa All Rights Reserved.</span>
+    </footer>
   </body>
 </html>
 
 <script>
-  $(function () {
+  $(function() {
     var num;
     var count;
     init();
@@ -47,6 +61,7 @@
       init();
       $('.score').text('');
       $('input[type="hidden"]').val('');
+      $('.choice').removeClass("is-choice-selected")
     });
 
     $('.choice').click(function() {
@@ -55,9 +70,10 @@
         return;
       }
       var score = num - count;
-      $(this).siblings('.score').text(count + 1 + '位（' + score + '点）')
+      $(this).children('.score').html('<span class="score-label">' + (count + 1) + '位' + '<br>' + '<small>(' + score + '点)<small>' + '</span>');
       var choiceId = $input.data('choice-id');
       $input.val('{"score":' + score + ',"choice_id":' + choiceId + '}');
+      $(this).addClass("is-choice-selected")
       count++;
     });
   });

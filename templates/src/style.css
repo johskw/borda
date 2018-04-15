@@ -25,7 +25,7 @@ footer, header, hgroup, menu, nav, section {
 display: block;
 }
 body {
-line-height: 1;
+line-height: 1.2;
 }
 ol, ul {
 list-style: none;
@@ -48,12 +48,26 @@ button:focus {
 a {
   text-decoration: none;
 }
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 /* base */
 
 html, body {
   font-size: 16px;
   color: #444;
+  background: #fcfcfc;
+}
+
+@media (max-width: 350px) {
+  html, body {
+    font-size: 14px;
+  }
 }
 
 h1 {
@@ -109,6 +123,7 @@ footer span {
   box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
   border-radius: 2px;
   padding: 2.5em 0;
+  background-color: #fff;
 }
 
 .form-item {
@@ -189,14 +204,103 @@ footer span {
   box-shadow: none;
 }
 
+.reset-btn {
+  background-color: #aaa;
+  font-size: .9em;
+  padding: .6em 1.2em;
+  min-width: 0;
+  margin: 1em 0 .5em;
+}
+
+.form-item .nickname-form {
+  max-width: 20em;
+  width: 80%;
+  margin: 1em 0;
+}
+
+.form-item .form-explain {
+  text-align: left;
+  font-size: .85em;
+  color: #777;
+  max-width: 28em;
+  margin: 0 auto;
+  padding-bottom: .5em;
+}
+
+.form-item .choice {
+  display: inline-block;
+  padding: .7em .7em .7em 1.4em;
+  width: 16em;
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  margin-bottom: .8em;
+  border-left: 5px solid #20b2aa;
+  position: relative;
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .form-item .choice {
+    width: 13em;
+  }
+}
+
+.form-item .choice:before {
+  display: inline-block;
+  content: "";
+  border: 7px solid transparent;
+  border-left-color: #20b2aa;
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.form-item .choice:active {
+  position: relative;
+  top: 1px;
+}
+
+.form-item .score {
+  display: inline-block;
+  position: absolute;
+  left: -3.5em;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.form-item .score .score-label {
+  display: inline-block;
+  text-align: center;
+  font-size: .85em;
+  background-color: #ffa500;
+  color: #fff;
+  padding: .5em;
+  border-radius: 50%;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+}
+
+.form-item .score .score-label small {
+  font-size: .8em;
+}
+
 /* state */
 
 .is-btn-disabled {
   background-color: #bbb;
 }
+
 .is-btn-disabled:hover {
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
   top: 0;
+}
+
+.is-choice-selected {
+  position: relative;
+  left: 1.5em;
 }
 
 /* theme */
