@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ボルダで決めったー</title>
     <link rel='stylesheet' href="../src/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
@@ -49,13 +50,27 @@
           <a href="/vote/{{.event.ID}}" class="btn">投票フォームへ</a>
         </div>
         <div class="l-align-center">
-          <span class="btn btn-inverse vote-list-btn">投票者一覧</span>
+          <span class="btn btn-inverse vote-list-btn" id="modal-open-btn">投票者一覧</span>
+        </div>
+        <div class="l-modal is-modal-invisible" id="modal">
+          <div class="modal-item">
+            <div class="modal-header">
+              <span class="modal-close-btn" id="modal-close-btn">×</span>
+              <h3>投票者一覧（{{ len .event.Votes }}名）</h3>
+            </div>
+            <div class="modal-content">
+              <p>
+                {{ range $i, $v := .event.Votes }}{{ if ne $i 0 }}、{{ end }}{{ $v.Name }}{{ end }}
+              </p>
+            </div>
+          </div>
+
         </div>
         <form method="post" style="margin: 0;" action="/finishevent/{{.event.ID}}">
-        <div class="l-align-center">
-          <button type="submit" class="btn event-finish-btn">投票を終了する</button>
-          <p class="finish-btn-explain">※投票を終了して結果を表示します。イベント作成時のパスワードが必要になります。</p>
-        </div>
+          <div class="l-align-center">
+            <button type="submit" class="btn event-finish-btn">投票を終了する</button>
+            <p class="finish-btn-explain">※投票を終了して結果を表示します。イベント作成時のパスワードが必要になります。</p>
+          </div>
         </form>
       {{ end }}
     </div>
@@ -64,3 +79,15 @@
     </footer>
   </body>
 </html>
+
+<script>
+  $(function() {
+    $('#modal-open-btn').click(function() {
+      $('#modal').removeClass('is-modal-invisible');
+    });
+
+    $('#modal-close-btn').click(function() {
+      $('#modal').addClass('is-modal-invisible')
+    });
+  });
+</script>

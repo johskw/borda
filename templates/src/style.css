@@ -100,7 +100,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 5;
 }
 
 .l-main {
@@ -113,6 +113,17 @@ header {
 
 .l-align-center {
   text-align: center;
+}
+
+.l-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .6);
+  padding: 2em 0;
+  z-index: 10;
 }
 
 footer {
@@ -317,12 +328,12 @@ header .back-btn {
 }
 
 .event-info {
-  width: 90%;
+  width: 80%;
   margin: 0 auto 2em;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 1em;
-  padding: 1.2em 2em 1em;
+  padding: 1.2em 1em 1em 1.5em;
   position: relative;
 }
 
@@ -410,6 +421,51 @@ header .back-btn {
   color: #777;
 }
 
+.modal-item {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 85%;
+  max-width: 30em;
+  max-height: 20em;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: .4em;
+  overflow: auto;
+}
+
+.modal-header {
+  padding: .7em;
+  border-bottom: 1px solid #ccc;
+  background-color: #ffe4b5;
+}
+
+.modal-close-btn {
+  position: absolute;
+  font-size: 1.7em;
+  font-weight: bold;
+  text-align: center;
+  top: .07em;
+  left: .5em;
+  color: #777;
+  cursor: pointer;
+}
+
+.modal-header h3 {
+  text-align: center;
+}
+
+.modal-content {
+  padding: 1em 1.5em;
+  text-align: center;
+}
+
+.modal-content p {
+  display: inline-block;
+  text-align: left;
+}
+
 /* state */
 
 .is-btn-disabled {
@@ -425,6 +481,10 @@ header .back-btn {
   position: relative;
   left: 1.5em;
   background-color: #eee;
+}
+
+.is-modal-invisible {
+  display: none;
 }
 
 /* theme */

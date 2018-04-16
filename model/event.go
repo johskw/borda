@@ -28,7 +28,7 @@ func (event Event) Create() (Event, error) {
 
 func GetEvent(id uint) (Event, error) {
 	var event Event
-	err := db.First(&event, id).Related(&event.Choices).Error
+	err := db.First(&event, id).Related(&event.Choices).Related(&event.Votes).Error
 	return event, err
 }
 
