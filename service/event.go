@@ -3,12 +3,19 @@ package service
 import (
 	"strconv"
 
+	"golang.org/x/crypto/bcrypt"
+
 	"github.com/johskw/borda/model"
 )
 
 func CreateEventAndChoices(event model.Event) (model.Event, error) {
 	event.Finished = false
-	event, err := event.Create()
+	hash, err := bcrypt.GenerateFromPassword([]byte(event.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return event, err
+	}
+	event.Password = string(hash[:])
+	event, err = event.Create()
 	if err != nil {
 		return event, err
 	}

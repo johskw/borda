@@ -9,6 +9,7 @@ type Event struct {
 	ID          uint
 	Theme       string `form:"theme"`
 	Detail      string `form:"detail"`
+	Password    string `form:"password"`
 	Finished    bool
 	ChoiceNames []string `form:"choices[]" gorm:"-"`
 	Choices     []Choice
