@@ -3,6 +3,8 @@ package model
 import (
 	"strconv"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type Event struct {
@@ -42,4 +44,12 @@ func (event Event) Finish() error {
 	event.Finished = true
 	err := db.Save(&event).Error
 	return err
+}
+
+func (event Event) CheckPassword(password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(event.Password), []byte(password))
+	if err != nil {
+		return false
+	}
+	return true
 }

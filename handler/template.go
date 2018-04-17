@@ -42,6 +42,11 @@ func ShowEventEdit(c *gin.Context) {
 	if err != nil {
 		log.Print(err)
 	}
+	ok := event.CheckPassword(c.PostForm("password"))
+	if !ok {
+		c.Redirect(http.StatusMovedPermanently, "/event/"+event.StrID())
+		return
+	}
 	c.HTML(http.StatusOK, "edit.html", gin.H{
 		"event": event,
 	})

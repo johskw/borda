@@ -13,7 +13,21 @@
     </header>
     <div class="l-main">
       <h1>投票イベント</h1>
-      <a href="/event/{{.event.ID}}/edit" class="btn btn-inverse event-edit-btn">編集</a>
+      <span class="btn btn-inverse event-edit-btn" id="edit-password-open-btn">編集</span>
+      <div class="modal is-modal-invisible" id="edit-password">
+        <div class="modal-item">
+          <div class="modal-header">
+            <span class="modal-close-btn" id="edit-password-close-btn">×</span>
+            <h3>パスワード入力</h3>
+          </div>
+          <div class="modal-content">
+            <form action="/event/{{.event.ID}}/edit" method="post">
+              <input type="password" name="password" placeholder="パスワード">
+              <button type="submit">編集フォームへ</button>
+            </form>
+          </div>
+        </div>
+      </div>
       <div class="event-info">
         <h2>テーマ</h2>
         <div class="l-align-center">
@@ -50,12 +64,12 @@
           <a href="/vote/{{.event.ID}}" class="btn">投票フォームへ</a>
         </div>
         <div class="l-align-center">
-          <span class="btn btn-inverse vote-list-btn" id="modal-open-btn">投票者一覧</span>
+          <span class="btn btn-inverse vote-list-btn" id="vote-list-open-btn">投票者一覧</span>
         </div>
-        <div class="l-modal is-modal-invisible" id="modal">
+        <div class="modal is-modal-invisible" id="vote-list">
           <div class="modal-item">
             <div class="modal-header">
-              <span class="modal-close-btn" id="modal-close-btn">×</span>
+              <span class="modal-close-btn" id="vote-list-close-btn">×</span>
               <h3>投票者一覧（{{ len .event.Votes }}名）</h3>
             </div>
             <div class="modal-content">
@@ -64,7 +78,6 @@
               </p>
             </div>
           </div>
-
         </div>
         <form method="post" style="margin: 0;" action="/finishevent/{{.event.ID}}">
           <div class="l-align-center">
@@ -82,12 +95,20 @@
 
 <script>
   $(function() {
-    $('#modal-open-btn').click(function() {
-      $('#modal').removeClass('is-modal-invisible');
+    $('#vote-list-open-btn').click(function() {
+      $('#vote-list').removeClass('is-modal-invisible');
     });
 
-    $('#modal-close-btn').click(function() {
-      $('#modal').addClass('is-modal-invisible')
+    $('#vote-list-close-btn').click(function() {
+      $('#vote-list').addClass('is-modal-invisible');
+    });
+
+    $('#edit-password-open-btn').click(function() {
+      $('#edit-password').removeClass('is-modal-invisible');
+    });
+
+    $('#edit-password-close-btn').click(function() {
+      $('#edit-password').addClass('is-modal-invisible');
     });
   });
 </script>
