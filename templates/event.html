@@ -23,7 +23,7 @@
           <div class="modal-content">
             <form action="/event/{{.event.ID}}/edit" method="post">
               <input type="password" name="password" placeholder="パスワード">
-              <button type="submit">編集フォームへ</button>
+              <button type="submit" class="btn btn-inverse">編集フォームへ</button>
             </form>
           </div>
         </div>
@@ -79,12 +79,24 @@
             </div>
           </div>
         </div>
-        <form method="post" style="margin: 0;" action="/finishevent/{{.event.ID}}">
-          <div class="l-align-center">
-            <button type="submit" class="btn event-finish-btn">投票を終了する</button>
-            <p class="finish-btn-explain">※投票を終了して結果を表示します。イベント作成時のパスワードが必要になります。</p>
+        <div class="l-align-center">
+          <span class="btn event-finish-btn" id="finish-password-open-btn">投票を終了する</span>
+          <p class="finish-btn-explain">※投票を終了して結果を表示します。イベント作成時のパスワードが必要になります。</p>
+        </div>
+        <div class="modal is-modal-invisible" id="finish-password">
+          <div class="modal-item">
+            <div class="modal-header">
+              <span class="modal-close-btn" id="finish-password-close-btn">×</span>
+              <h3>パスワード入力</h3>
+            </div>
+            <div class="modal-content">
+              <form action="/finishevent/{{.event.ID}}" method="post">
+                <input type="password" name="password" placeholder="パスワード">
+                <button type="submit" class="btn btn-inverse">結果を表示</button>
+              </form>
+            </div>
           </div>
-        </form>
+        </div>
       {{ end }}
     </div>
     <footer>
@@ -109,6 +121,14 @@
 
     $('#edit-password-close-btn').click(function() {
       $('#edit-password').addClass('is-modal-invisible');
+    });
+
+    $('#finish-password-open-btn').click(function () {
+      $('#finish-password').removeClass('is-modal-invisible');
+    });
+
+    $('#finish-password-close-btn').click(function () {
+      $('#finish-password').addClass('is-modal-invisible');
     });
   });
 </script>

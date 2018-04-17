@@ -39,7 +39,16 @@ func UpdateEvent(c *gin.Context) {
 }
 
 func FinishEvent(c *gin.Context) {
-	err := service.FinishEvent(c.Param("id"))
+	event, err := service.GetEventFromStrID(c.Param("id"))
+	if err != nil {
+		log.Print(err)
+	}
+	ok := event.CheckPassword(c.PostForm("password"))
+	if !ok {
+		c.Redirect(http.StatusMovedPermanently, "/event/"+event.StrID())
+		return
+	}
+	err = event.Finish()
 	if err != nil {
 		log.Print(err)
 	}

@@ -37,12 +37,3 @@ func GetEventFromStrID(strID string) (model.Event, error) {
 	event, err := model.GetEvent(uint(intID))
 	return event, err
 }
-
-func FinishEvent(strID string) error {
-	event, err := GetEventFromStrID(strID)
-	if err != nil {
-		return err
-	}
-	err = event.Finish()
-	return err
-}
