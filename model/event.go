@@ -32,6 +32,11 @@ func GetEvent(id uint) (Event, error) {
 	return event, err
 }
 
+func (event Event) Update() error {
+	err := db.Save(&event).Error
+	return err
+}
+
 func (event Event) Finish() error {
 	event.Finished = true
 	err := db.Save(&event).Error

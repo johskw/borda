@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ボルダで決めったー</title>
+    <link rel='stylesheet' href="../../src/style.css">
+  </head>
+  <body>
+    <header>
+      <a href="/" class="icon">ボルダで決めったー</a>
+    </header>
+    <div class="l-main">
+      <h1>投票イベント編集</h1>
+      <form action="/updateevent/{{.event.ID}}" method="post" class="event-form">
+        <div class="form-item">
+          <input type="text" name="theme" placeholder="テーマ" value="{{ .event.Theme }}">
+        </div>
+        <div class="form-item">
+          <textarea name="detail" rows="3" placeholder="説明（任意）">{{ .event.Detail }}</textarea>
+        </div>
+        <div class="form-item">
+          <div class="num-selector">
+            <p>選択肢の数</p>
+            <span class="num-btn plus-btn is-btn-disabled">＋</span>
+            <span class="num">{{ len .event.Choices }}</span>
+            <span class="num-btn minus-btn is-btn-disabled">－</span>
+          </div>
+          <p class="choice-explain">※選択肢の変更はできません</p>
+        </div>
+        <div id="choice-list">
+          {{ range .event.Choices }}
+            <div class="form-item choice-item">
+              <input type="text" value="{{ .Name }}" disabled="disabled" class="is-input-disabled">
+            </div>
+          {{ end }}
+        </div>
+        <button type="submit" class="btn">更新</button>
+      </form>
+    </div>
+    <footer>
+       <span>&copy; 2018 Joichiro Hashikawa All Rights Reserved.</span>
+    </footer>
+  </body>
+</html>

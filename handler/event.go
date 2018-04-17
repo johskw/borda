@@ -22,6 +22,22 @@ func CreateEvent(c *gin.Context) {
 	c.Redirect(http.StatusMovedPermanently, "/event/"+event.StrID())
 }
 
+func UpdateEvent(c *gin.Context) {
+	event, err := service.GetEventFromStrID(c.Param("id"))
+	if err != nil {
+		log.Print(err)
+	}
+	err = c.Bind(&event)
+	if err != nil {
+		log.Print(err)
+	}
+	err = event.Update()
+	if err != nil {
+		log.Print(err)
+	}
+	c.Redirect(http.StatusMovedPermanently, "/event/"+c.Param("id"))
+}
+
 func FinishEvent(c *gin.Context) {
 	err := service.FinishEvent(c.Param("id"))
 	if err != nil {
