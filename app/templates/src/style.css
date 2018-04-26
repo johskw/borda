@@ -479,6 +479,10 @@ header .back-btn {
   text-align: left;
 }
 
+.event-result {
+  text-align: center;
+}
+
 /* state */
 
 .is-btn-disabled {

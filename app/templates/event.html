@@ -43,12 +43,16 @@
         </div>
       {{ end }}
       {{ if .event.Finished }}
-        <h2>投票結果</h2>
-        <ul>
-          {{ range .result }}
-            <li>{{ .ChoiceName }}（{{ .TotalScore }}点）</li>
-          {{ end }}
-        </ul>
+        <div class="event-info">
+          <h2>投票結果</h2>
+          <div class="l-align-center">
+            <ul>
+              {{ range $i, $v := .result }}
+              <li><span class="rank" data-index="{{ $i }}"></span>位：{{ .ChoiceName }}（{{ .TotalScore }}点）</li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
       {{ else }}
         <div class="event-info">
           <h2>選択肢</h2>
@@ -107,6 +111,10 @@
 
 <script>
   $(function() {
+    $('.rank').each(function() {
+      $(this).text($(this).data('index') + 1);
+    })
+
     $('#vote-list-open-btn').click(function() {
       $('#vote-list').removeClass('is-modal-invisible');
     });
